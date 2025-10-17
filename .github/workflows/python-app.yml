@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your repo
+      # Step 1: Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Python 3.11
+      # Step 2: Setup Python 3.11
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -26,11 +26,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install gunicorn
 
-      # Step 4: Run tests (optional, can skip if none)
+      # Step 4: Optional: Run tests
       - name: Run tests
         run: |
-          echo "No tests defined yet"
+          echo "No tests yet"
 
-    # Step 5: Deploy to Render (optional automation)
-    # You can trigger Render deploy here if using API token or manual deploy
+    # Step 5: Optional deployment step
+    # If you want to auto-deploy to Render, you can add Render API deploy here
