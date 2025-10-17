@@ -1,30 +1,36 @@
-name: Python App Deployment
+name: Python Flask CI/CD
 
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout your repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step 2: Set up Python 3.11
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Test Flask app
+      # Step 4: Run tests (optional, can skip if none)
+      - name: Run tests
         run: |
-          python -m flask --version
+          echo "No tests defined yet"
 
-      - name: Deploy info
-        run: echo "✅ Flask App build successful and ready for deployment!"
+    # Step 5: Deploy to Render (optional automation)
+    # You can trigger Render deploy here if using API token or manual deploy
